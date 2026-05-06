@@ -8,12 +8,16 @@
 <h1 align="center">🦕 dino</h1>
 
 <p align="center">
-  <strong>The Chrome Dinosaur Game, reborn in your terminal.</strong>
+  <strong>The Chrome Dinosaur Game — reborn in your terminal.</strong>
+</p>
+
+<p align="center">
+  <img src="demo.gif" alt="dino gameplay demo" width="700"/>
 </p>
 
 <p align="center">
   Jump over cacti. Duck under pterodactyls. Chase your high score.<br/>
-  Pure Python. Zero dependencies. Just <code>python dino.py</code> and play.
+  Pure Python. Zero dependencies. Just <code>pip install dino-run</code> and play.
 </p>
 
 <p align="center">
@@ -21,7 +25,7 @@
   <a href="#-install">Install</a> •
   <a href="#-controls">Controls</a> •
   <a href="#-how-it-works">How it works</a> •
-  <a href="#-license">License</a>
+  <a href="#-contributing">Contributing</a>
 </p>
 
 ---
@@ -32,10 +36,10 @@
 - 🌵 **Multiple obstacle types** — Small cacti, large cacti, double cacti, and flying pterodactyls
 - 🌗 **Day/night cycle** — The world transitions between day and night every 700 points
 - ⚡ **Progressive difficulty** — Speed increases over time, obstacles spawn more frequently
-- ☁️ **Parallax effects** — Clouds scroll at different speeds for depth
-- ⭐ **Starfield** — Stars appear during nighttime with smooth transitions
+- ☁️ **Parallax effects** — Clouds scroll at different speeds for visual depth
+- ⭐ **Starfield** — Stars appear during nighttime with smooth fade transitions
 - 🏆 **High score tracking** — Your best score persists during the session
-- 🎨 **Animated sprites** — Running, jumping, ducking, and death animations
+- 🎨 **Animated sprites** — Running, jumping, ducking, and death animations via ASCII art
 - 📊 **Speed indicator** — Watch your speed climb in real time
 - 💯 **Milestone flash** — Score blinks every 100 points, just like the original
 - 🪶 **Zero dependencies** — Uses only Python standard library (`curses`)
@@ -43,17 +47,13 @@
 ## 📦 Install
 
 ```bash
-# Clone and play immediately
+# Install from PyPI (coming soon)
+pip install dino-run
+
+# Or clone and play immediately
 git clone https://github.com/nadonghuang/dino.git
 cd dino
-python dino.py
-```
-
-Or install with pip:
-
-```bash
-pip install .
-dino-run
+python3 dino.py
 ```
 
 ### Requirements
@@ -74,13 +74,13 @@ dino-run
 ## 🚀 Usage
 
 ```bash
-# Quick play
-python dino.py
+# Quick play — no install needed
+python3 dino.py
 
 # Via pip install
 dino-run
 
-# Make it executable
+# Or make it executable
 chmod +x dino.py
 ./dino.py
 ```
@@ -89,53 +89,44 @@ chmod +x dino.py
 
 ```
 dino/
-├── dino.py           # Complete game (single file, ~550 lines)
+├── dino.py           # Complete game — single file, ~550 lines
 ├── bin/dino          # CLI entry point
 ├── pyproject.toml    # Package config
+├── demo.gif          # Gameplay demo
 ├── LICENSE           # MIT
 └── README.md         # You are here
 ```
 
 The entire game lives in **one Python file** using only the standard library:
 
-- **`curses`** — Terminal rendering, colors, and non-blocking keyboard input
-- **Physics engine** — Gravity-based jump mechanics with velocity tracking
-- **Sprite system** — Multi-frame ASCII sprites with collision hitbox detection
-- **World generation** — Procedural obstacle spawning with difficulty scaling
-- **Parallax rendering** — Clouds, ground, and stars at different scroll speeds
+| Component | Implementation |
+|-----------|---------------|
+| **Rendering** | `curses` — Terminal colors, non-blocking input, frame control |
+| **Physics** | Gravity-based jump arcs with velocity tracking |
+| **Sprites** | Multi-frame ASCII art with collision hitbox detection |
+| **World gen** | Procedural obstacle spawning with difficulty scaling |
+| **Parallax** | Clouds, ground, and stars at different scroll speeds |
 
 ### Game Mechanics
 
-- **Jump**: Velocity-based arc with configurable gravity (`0.6`) and jump force (`2.8`)
+- **Jump**: Velocity-based arc — gravity `0.6`, jump force `2.8`
 - **Duck**: Reduces hitbox height to slide under pterodactyls
-- **Speed**: Starts at 8 chars/sec, increments by 0.002/frame, caps at 25
-- **Pterodactyls**: Only appear after score 300, fly at varying heights
-- **Collision**: Shrunk hitboxes with padding for forgiving gameplay
-
-## 📁 Project Structure
-
-```
-dino.py          ← Everything is here
-├── Constants    — Physics, speed, display config
-├── Sprites      — ASCII art for dino, cacti, pteros, clouds
-├── Player       — Dino physics, animation, hitbox
-├── Obstacle     — Cacti & pterodactyls with movement
-├── Cloud/Star   — Decorative parallax elements
-├── Game         — Main loop: input → update → render
-└── main()       — Entry point with size check
-```
+- **Speed**: Starts at 8 chars/sec, +0.002/frame, caps at 25
+- **Pterodactyls**: Appear after score 300, fly at varying heights
+- **Collision**: Shrunk hitboxes with 1-char padding for forgiving gameplay
+- **Day/Night**: Toggles every 700 points with smooth color transitions
 
 ## 🤝 Contributing
 
 Ideas welcome:
 
-- Sound effects (terminal bell on jump)
-- New obstacle types
-- Difficulty presets (easy/medium/hard)
-- Obstacle pattern generator
-- Color theme customization
+- 🔊 Sound effects (terminal bell on jump)
+- 🏗️ New obstacle types
+- 📏 Difficulty presets (easy / medium / hard)
+- 🎯 Obstacle pattern generator
+- 🎨 Color theme customization
 
-Fork, branch, PR. Keep it zero-dep.
+Fork → Branch → PR. Keep it zero-dep.
 
 ## 📄 License
 
@@ -146,5 +137,5 @@ MIT — see [LICENSE](LICENSE) for details.
 <p align="center">
   Made with 🦕 by <a href="https://github.com/nadonghuang">nadonghuang</a>
   <br/>
-  <sub>If you survived past 1000, you're a legend. ⭐ this repo!</sub>
+  <sub>If you survived past 1000, you're a legend. ⭐ Star this repo!</sub>
 </p>
